@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+ <title>Hello World, AngularJS</title>
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+</head>
+<body>
+ Write some text in textbox:
+ <input type="text" ng-model="contact" />
+ <h1> {{ contact | uppercase }}</h1>
+
+	<div ng-controller="ContactController">    
+		<h2>Contacts</h2>    
+		<ul>        
+			<li ng-repeat="contact in contacts | filter : age {age : agefilter}"> {{ contact }} </li>    
+		</ul> 
+	</div> 
+</body>
+	<script type="text/javascript">    
+		function ContactController($scope) {        
+		$scope.contacts = ["hi@email.com", "hello@email.com"];    
+		} 
+	</script> 
+</html>
