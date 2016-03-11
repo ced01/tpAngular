@@ -6,19 +6,26 @@
 </head>
 <body>
  Write some text in textbox:
- <input type="text" ng-model="contact" />
- <h1> {{ contact | uppercase }}</h1>
+ <input type="text" ng-model="person" />
+ <h1> {{ person }}</h1>
 
-	<div ng-controller="ContactController">    
-		<h2>Contacts</h2>    
+	<div ng-controller="PersonController">    
+		<h2>Persons</h2>    
 		<ul>        
-			<li ng-repeat="contact in contacts | filter : age {age : agefilter}"> {{ contact }} </li>    
+			<li ng-repeat="person in persons"> {{ person }} </li>    
 		</ul> 
 	</div> 
 </body>
 	<script type="text/javascript">    
-		function ContactController($scope) {        
-		$scope.contacts = ["hi@email.com", "hello@email.com"];    
+		function PersonController($scope) {        
+			$scope.persons = [
+								{name:"bob",age:"21",salary:"30 000"},
+								{name:"bob",age:"21",salary:"25 000"},
+								{name:"bob",age:"21",salary:"36 000"},
+								{name:"bob",age:"25",salary:"28 000"},
+								{name:"bob",age:"31",salary:"42 000"},
+								{name:"bob",age:"35",salary:"50 000"}
+							 ];    
 		} 
 	</script> 
 </html>
