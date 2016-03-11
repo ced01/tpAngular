@@ -5,27 +5,35 @@
  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 </head>
 <body>
- Write some text in textbox:
- <input type="text" ng-model="person" />
- <h1> {{ person }}</h1>
 
-	<div ng-controller="PersonController">    
-		<h2>Persons</h2>    
-		<ul>        
-			<li ng-repeat="person in persons"> {{ person }} </li>    
-		</ul> 
-	</div> 
+  <form novalidate class="simple-form">
+    Name: <input type="text" ng-model="user.name" /><br />
+    Age: <input type="text" ng-model="user.age" /><br />
+    Salary: <input type="text" ng-model="user.salary" /><br />
+   
+    <input type="button" ng-click="reset()" value="Reset" />
+    <input type="submit" ng-click="update(user)" value="Save" />
+  </form>
+  <pre>userName = {{user.name}}</pre>
+  <pre>userAge = {{user.age}}</pre>
+  <pre>userSal = {{user.salary}}</pre>
+
 </body>
-	<script type="text/javascript">    
-		function PersonController($scope) {        
-			$scope.persons = [
-								{name:"bob",age:"21",salary:"30 000"},
-								{name:"bob",age:"21",salary:"25 000"},
-								{name:"bob",age:"21",salary:"36 000"},
-								{name:"bob",age:"25",salary:"28 000"},
-								{name:"bob",age:"31",salary:"42 000"},
-								{name:"bob",age:"35",salary:"50 000"}
-							 ];    
-		} 
-	</script> 
+<script>
+  controller('PersonController', ['$scope', function($scope) {
+
+   
+   $scope.addPerson = function(personName,personAge, personSalary){
+
+        var person = {
+            name: personName,
+            age: personAge,
+            salary: personSalary
+        };
+
+        persons.add(person);
+
+    }
+    }]);
+</script> 
 </html>
