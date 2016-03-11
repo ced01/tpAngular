@@ -4,46 +4,78 @@
  <title>Hello World, AngularJS</title>
  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 </head>
-<body>
 
-  <form novalidate class="simple-form">
-    Name: <input type="text" ng-model="user.name" /><br />
-    Age: <input type="text" ng-model="user.age" /><br />
-    Salary: <input type="text" ng-model="user.salary" /><br />
-   
-    <button type="submit" value="Submit" ng-click="addPerson(personName,personAge, personSalary)">Submit</button>
-  </form>
-  <pre>userName = {{user.name}}</pre>
-  <pre>userAge = {{user.age}}</pre>
-  <pre>userSal = {{user.salary}}</pre>
-
-</body>
-<script>
-  controller('PersonController', ['$scope', function($scope) {
-      $scope.persons = [
-
-        {name:"bob",age:"21",salary:"30 000"},
-								{name:"bob",age:"21",salary:"25 000"},
-								{name:"bob",age:"21",salary:"36 000"},
-								{name:"bob",age:"25",salary:"28 000"},
-								{name:"bob",age:"31",salary:"42 000"},
-								{name:"bob",age:"35",salary:"50 000"}
-							 
+  <body ng-controller="PersonController">
+       <script type="text/javascript" >
+      function PersonController($scope){
+  $scope.people = [
+    {name:'Bob', age: 42, salary: '40000'},
+    {name:'Clark', age: 36, salary: '35000'},
+    {name:'Alice', age: 21, salary: '37500'}
     ];
-   
-   $scope.addPerson = function(personName,personAge, personSalary){
-        var person = {
-            name: personName,
-            age: personAge,
-            salary: personSalary
-        };
-        persons.add(person);
-    }
-    }]);
-</script> 
 
-<div>
+  $scope.addPerson = function(){
+    var person = {
+        name: $scope.name,
+        age: $scope.age,
+        salary: $scope.salary,
+    };
+
+    $scope.people.push(person);
+  }; 
+
+  $scope.removePerson = function(index){
+    $scope.people.splice(index, 1);
+  };  
+}
+</script>
+    <h1>Person List</h1>
+
+    <fieldset>
+       <legend>Create Person</legend>
+       <input type="text" ng-model="name" placeholder="Name" ><br />
+       <input type="number" ng-model="age" placeholder="Age" ><br />
+       <input type="number" ng-model="salary" placeholder="Salary" ><br />
+       <button type="button" ng-click="addPerson()">Add Person</button>
+    </fieldset>
+
+    <table border="1" cellpadding="10">
+       <thead>
+         <tr>
+           <th>
+              Name
+           </th>
+           <th>
+              Age
+          </th>
+          <th>
+              Salary
+          </th>
+          <th>
+
+          </th>
+        </tr>
+      </thead>
+      <body>
+         <tr ng-repeat="person in people">
+           <td>
+             {{ person.name }}
+          </td>
+          <td>
+             {{ person.age }}
+          </td>
+          <td>
+             {{ person.salary }}
+          </td>
+          <td>
+             <button type="button" ng-click="removePerson($index)">Remove Person</button>
+          </td>
+        </tr>
+      </body>
+    </table>
+
+  </body>
 
 
-</div>
+
 </html>
