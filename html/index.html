@@ -11,8 +11,7 @@
     Age: <input type="text" ng-model="user.age" /><br />
     Salary: <input type="text" ng-model="user.salary" /><br />
    
-    <input type="button" ng-click="reset()" value="Reset" />
-    <input type="submit" ng-click="update(user)" value="Save" />
+    <button type="submit" value="Submit" ng-click="addPerson(personName,personAge, personSalary)">Submit</button>
   </form>
   <pre>userName = {{user.name}}</pre>
   <pre>userAge = {{user.age}}</pre>
@@ -21,19 +20,30 @@
 </body>
 <script>
   controller('PersonController', ['$scope', function($scope) {
+      $scope.persons = [
 
+        {name:"bob",age:"21",salary:"30 000"},
+								{name:"bob",age:"21",salary:"25 000"},
+								{name:"bob",age:"21",salary:"36 000"},
+								{name:"bob",age:"25",salary:"28 000"},
+								{name:"bob",age:"31",salary:"42 000"},
+								{name:"bob",age:"35",salary:"50 000"}
+							 
+    ];
    
    $scope.addPerson = function(personName,personAge, personSalary){
-
         var person = {
             name: personName,
             age: personAge,
             salary: personSalary
         };
-
         persons.add(person);
-
     }
     }]);
 </script> 
+
+<div>
+
+
+</div>
 </html>
